@@ -1,10 +1,11 @@
 # MCQ-Test-Maker
- big brain project 1 yeet
+ big brain project 1
 [![Run on Repl.it](https://repl.it/badge/github/DAVT0N/PGS)](https://repl.it/github/DAVT0N/PGS)
 
 # Functionalities
->>in
-- User inputs questions
+
+in
+- user inputs questions
     1. asks user for question type (T/F or MC)
         - if T/F:
             1. user inputs question
@@ -16,8 +17,8 @@
     2. user can view and edit previous inputs at any moment.
     3. user will be met with a menu with options: insert, remove, edit, display, output
 
->>out
+out
 -
 
->>grade
+grade
 -
