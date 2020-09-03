@@ -17,7 +17,7 @@
             3. inputs answer choices (first input(s) must be the correct choice)
     2. user can view and edit previous inputs at any moment.
     3. user will be met with a menu with options: add, remove, edit, display, output
-    4. generate output file with list of all inputs
+    4. (will be changed) generate output file with list of all inputs
 
 -OUT-
 
