@@ -32,3 +32,6 @@
     2. reads user response file(s)
     3. (optional) outputs user response file(s) with identification of false answers if there are any
     4. generates 1 file that shows input(s) and corresponding scores
+
+# UML Diagram
+<img src="./images/uml_diagram.png">
