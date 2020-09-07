@@ -11,7 +11,7 @@ class MC : public Question{
     public:
         MC(){
             int intInput = 0;
-            char charInput = '';
+            char charInput = '\0';
             std::string strInput = "";
             while(intInput < 1 || intInput > 9){ //verifies and receives user input for numCorrect
                 std::cout << "Enter number of correct choices (1 to 9):" << std::endl;
@@ -19,7 +19,7 @@ class MC : public Question{
                 std::cin.clear();
                 std::cin.ignore(1000,'\n');
                 std::cin >> intInput;
-                std::endl;
+                std::cout << std::endl;
                 if(std::cin.fail()){ //check if input is int
                     std::cout << "Error: input must be of integer type [1, 2, 3, ...]." << std::endl;
                     std::cout << "Please try again." << std::endl;
@@ -38,13 +38,13 @@ class MC : public Question{
                 std::cin.clear();
                 std::cin.ignore(1000,'\n');
                 std::getline(std::cin, strInput);
-                std::endl;
+                std::cout << std::endl;
                 std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
                 std::cout << ">> ";
                 std::cin.clear();
                 std::cin.ignore(1000,'\n');
                 std::cin >> charInput;
-                std::endl;
+                std::cout << std::endl;
                 if(std::cin.fail()){ //check if input is char
                     std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
                     std::cout << "Please try again." << std::endl;
