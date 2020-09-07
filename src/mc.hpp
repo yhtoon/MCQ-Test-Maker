@@ -13,11 +13,17 @@ class MC : public Question{
             int intInput = 0;
             while(intInput < 1 || intInput > 9){
                 std::cout << "Enter number of correct choices (up to 9): ";
-                std::cin >> intInput;
                 std::cin.clear();
                 std::cin.ignore(1000,'\n');
-                if(intInput < 1 || intInput > 9)
+                std::cin >> intInput;
+                if(std::cin.fail()){ //check if input is int
+                    std::cout << "Error: input must be in integer form (1, 2, 3, ...)." << std::endl;
+                    std::cout << "Please try again." << std::endl;
+                }
+                else if(intInput < 1 || intInput > 9){
                     std::cout << "Error: integer input must be greater than 0 and less than 10." << std::endl;
+                    std::cout << "Please try again." << std::endl;
+                }
             }
             //std::cout << "TODO: MC::MC()" << std::endl;
         }

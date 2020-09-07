@@ -9,7 +9,11 @@ class TF : public Question{
         std::vector<std::string> choices;
         int numCorrect;
     public:
-        TF(){
+        /*
+        1. asks user for input
+        2. store input into variables
+        */
+        TF():numCorrect(1){ 
             std::cout << "TODO: TF::TF()" << std::endl;
         }
 
