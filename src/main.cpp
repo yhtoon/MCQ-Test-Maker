@@ -1,12 +1,38 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
 #include "mcq_test_maker.hpp"
+#include "mc.hpp"
+
+//actual main
 
 int main(){
     MCQTestMaker* ez = new MCQTestMaker();
     return 0;
 }
 
-/*
+//MC test
 
+// int main(){
+//     MC* mc = new MC();
+//     std::cout << mc->getNumCorrect() << std::endl;
+//     std::cout << std::endl;
+//     std::cout << mc->getQuestion() << std::endl;
+//     std::vector<std::string> v = mc->getChoices();
+//     std::cout << std::endl;
+//     char c = 'A';
+//     for(unsigned i = 0; i < v.size(); ++i){
+//         std::cout << c << ". " << v.at(i) << std::endl;
+//         c++;
+//     }
+//     std::cout << std::endl;
+//     mc->display();
+    
+//     return 0;
+// }
+
+/*
 >>command line navigation
 
 ls (show contents of current directory)
@@ -31,5 +57,4 @@ g++ main.cpp -o shit && ./shit
 .at(<index>)
 .push_back(<item>)
 <vector name>.pop_back(<item>)
-
 */

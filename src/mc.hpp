@@ -8,11 +8,12 @@ class MC : public Question{
         std::string question;
         std::vector<std::string> choices;
         int numCorrect;
-        
     public:
         MC(){
+            std::cout << "...Constructing new Multiple Choice Question..." << std::endl;
             setNumCorrect();
             setQuestion();
+            std::cout << "next" << std::endl;
             setChoices();
         }
 
@@ -28,25 +29,24 @@ class MC : public Question{
             return numCorrect;
         }
 
-        void setQuestion(){
+        void setQuestion(){ //receives and verifies user input for std::string question
             char charInput = '\0';
             std::string strInput = "";
-            while(1){ //receives and verifies user input for std::string question
+            while(1){
                 //resets temp input variables
                 charInput = '\0';
                 strInput = "";
                 std::cout << "Enter question:" << std::endl;
                 std::cout << ">> ";
-                std::cin.clear();
-                std::cin.ignore(1000,'\n');
                 std::getline(std::cin, strInput);
                 std::cout << std::endl;
                 while(1){
+                    std::cout << "setQuestion() enter inner loop" << std::endl;
                     std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
                     std::cout << ">> ";
+                    std::cin >> charInput;
                     std::cin.clear();
                     std::cin.ignore(1000,'\n');
-                    std::cin >> charInput;
                     std::cout << std::endl;
                     if(std::cin.fail()){ //check if input is char
                         std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
@@ -59,6 +59,7 @@ class MC : public Question{
                     else
                         break;
                 }
+                std::cout << "setQuestion() exit inner loop" << std::endl;
                 if(charInput == 'e'){
                     question = strInput;
                     break;
@@ -66,11 +67,13 @@ class MC : public Question{
             }
         }
 
-        void setChoices(){
+        void setChoices(){ //receives and verifies user input for std::vector<std::string> choices
             char charInput = '\0';
             std::string strInput = "";
             bool choiceTypeFlag = false;
-            while(1){ //receives and verifies user input for std::vector<std::string> choices
+            int correctChoiceIndex = 1;
+            int incorrectChoiceIndex = 1;
+            while(1){
                 //resets temp input variables
                 charInput = '\0';
                 strInput = "";
@@ -83,16 +86,14 @@ class MC : public Question{
                     choiceTypeFlag = false;
                 }
                 std::cout << ">> ";
-                std::cin.clear();
-                std::cin.ignore(1000,'\n');
                 std::getline(std::cin, strInput);
                 std::cout << std::endl;
-                while(1){
+                while(1){ //checks if user wants to reinput
                     std::cout << "Enter 'q' to reenter choice or 'e' to continue" << std::endl;
                     std::cout << ">> ";
+                    std::cin >> charInput;
                     std::cin.clear();
                     std::cin.ignore(1000,'\n');
-                    std::cin >> charInput;
                     std::cout << std::endl;
                     if(std::cin.fail()){ //check if input is char
                         std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
@@ -105,27 +106,71 @@ class MC : public Question{
                     else
                         break;
                 }
-                if(charInput == 'e'){
-                    if(choiceTypeFlag)
-                        correctChoiceIndex++;
-                    else
-                        incorrectChoiceIndex++;
-                    choices.push_back(strInput);
-                    break;
+                if(charInput == 'e'){ //if user is satisfied with most recent input
+                    if(choices.size() >= 9){
+                        std::cout << "Maximum number of choices reached." << std::endl;
+                        std::cout << std::endl;
+                        std::cout << "...Multiple Choice Question successfully built..." << std::endl;
+                        std::cout << std::endl;
+                        choices.push_back(strInput);
+                        return;
+                    }
+                    while(1){ //checks if user wants to add more choices
+                        std::cout << "Enter 'q' to stop adding choices or 'e' to continue" << std::endl;
+                        std::cout << ">> ";
+                        std::cin >> charInput;
+                        std::cin.clear();
+                        std::cin.ignore(1000,'\n');
+                        std::cout << std::endl;
+                        if(std::cin.fail()){ //check if input is char
+                            std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
+                            std::cout << "Please try again." << std::endl;
+                        }
+                        else if(charInput != 'q' && charInput != 'e'){
+                            std::cout << "Error: character input must be either 'q' or 'e'." << std::endl;
+                            std::cout << "Please try again." << std::endl;
+                        }
+                        else
+                            break;
+                    }
+                    if(charInput == 'q'){
+                        if(choices.size() <= numCorrect){
+                            std::cout << "Error: user must input at least " << numCorrect + 1 << " choices as determined by previous input for number of correct choices (" << numCorrect << ")" << std::endl;
+                            std::cout << std::endl;
+                            if(choiceTypeFlag)
+                                correctChoiceIndex++;
+                            else
+                                incorrectChoiceIndex++;
+                            choices.push_back(strInput);
+                        }
+                        else{
+                            std::cout << "...Multiple Choice Question successfully built..." << std::endl;
+                            std::cout << std::endl;
+                            choices.push_back(strInput);
+                            return;
+                        }
+                    }
+                    else{
+                        if(choiceTypeFlag)
+                            correctChoiceIndex++;
+                        else
+                            incorrectChoiceIndex++;
+                        choices.push_back(strInput);
+                    }
                 }
             }
         }
 
-        void setNumCorrect(){
+        void setNumCorrect(){ //receives and verifies user input for int numCorrect
             int intInput = 0;
-            while(1){ //receives and verifies user input for int numCorrect
+            while(1){
                 //resets temp input variables
                 intInput = 0;
                 std::cout << "Enter number of correct choices (1 to 9):" << std::endl;
                 std::cout << ">> ";
+                std::cin >> intInput;
                 std::cin.clear();
                 std::cin.ignore(1000,'\n');
-                std::cin >> intInput;
                 std::cout << std::endl;
                 if(std::cin.fail()){ //check if input is int
                     std::cout << "Error: input must be of integer type [1, 2, 3, ...]." << std::endl;
@@ -143,7 +188,16 @@ class MC : public Question{
         }
 
         void display() const{
-            std::cout << "TODO: void MC::display()" << std::endl;
+            std::cout << "Question: " << std::endl;
+            std::cout << question << std::endl;
+            std::cout << std::endl;
+            std::cout << "Choices: " << std::endl;
+            char c = 'A';
+            for(unsigned i = 0; i < choices.size(); ++i){
+                std::cout << c << ". " << choices.at(i) << std::endl;
+                c++;
+            }
+            std::cout << std::endl;
         }
 };
 
