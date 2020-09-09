@@ -45,7 +45,31 @@ class TF : public Question{
         }
 
         void setChoices(){
-            std::cout << "TODO: void TF::setChoices()" << std::endl;
+          char charInput = '\0';
+          while(1){
+              charInput = '\0';
+              std::cout << "Enter (t or f):" << std::endl;
+              std::cout << ">> ";   
+              std::cin >> charInput;
+              std::cin.clear();
+              std::cin.ignore(1000,'\n');
+              std::cout << std::endl;
+              charInput = tolower(charInput);
+              if(charInput != 't' && charInput != 'f'){
+                std::cout << "Error: character input must be either 't' or 'f'." << std::endl;
+                std::cout << "Please try again." << std::endl;
+              }
+              else{
+                if (proceed()){
+                  if(charInput=='t'){
+                    choices.push_back("T");
+                  }
+                  else  choices.push_back("F");
+                  break;
+                }
+              }  
+          }
+ 
         }
 
         void setNumCorrect(){
@@ -53,7 +77,12 @@ class TF : public Question{
         }
 
         void display() const{
-            std::cout << "TODO: void TF::display()" << std::endl;
+            std::cout << "Question: " << std::endl;
+            std::cout << question << std::endl;
+            std::cout << std::endl;
+            std::cout << "Answer: " << std::endl;
+            std::cout << choices.at(0) << std::endl;
+            std::cout << std::endl;
         }
 };
 
