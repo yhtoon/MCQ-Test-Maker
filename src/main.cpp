@@ -53,10 +53,11 @@ g++ main.cpp && ./a.out (to compile)
 g++ main.cpp -o shit && ./shit
 
 ./ (run executable)
-
+dwdwwddwwd
 >>vector
 
 .at(<index>)
 .push_back(<item>)
 <vector name>.pop_back(<item>)
 */
+//fg sidfhgsbgbgfbgrabrabhaerhbrehbjrehbraekjhbrhlhbrelabhlarh
