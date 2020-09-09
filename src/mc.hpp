@@ -13,7 +13,6 @@ class MC : public Question{
             std::cout << "...Constructing new Multiple Choice Question..." << std::endl;
             setNumCorrect();
             setQuestion();
-            std::cout << "next" << std::endl;
             setChoices();
         }
 
@@ -40,27 +39,7 @@ class MC : public Question{
                 std::cout << ">> ";
                 std::getline(std::cin, strInput);
                 std::cout << std::endl;
-                while(1){
-                    std::cout << "setQuestion() enter inner loop" << std::endl;
-                    std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
-                    std::cout << ">> ";
-                    std::cin >> charInput;
-                    std::cin.clear();
-                    std::cin.ignore(1000,'\n');
-                    std::cout << std::endl;
-                    if(std::cin.fail()){ //check if input is char
-                        std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
-                        std::cout << "Please try again." << std::endl;
-                    }
-                    else if(charInput != 'q' && charInput != 'e'){
-                        std::cout << "Error: character input must be either 'q' or 'e'." << std::endl;
-                        std::cout << "Please try again." << std::endl;
-                    }
-                    else
-                        break;
-                }
-                std::cout << "setQuestion() exit inner loop" << std::endl;
-                if(charInput == 'e'){
+                if(proceed()){
                     question = strInput;
                     break;
                 }
@@ -88,25 +67,7 @@ class MC : public Question{
                 std::cout << ">> ";
                 std::getline(std::cin, strInput);
                 std::cout << std::endl;
-                while(1){ //checks if user wants to reinput
-                    std::cout << "Enter 'q' to reenter choice or 'e' to continue" << std::endl;
-                    std::cout << ">> ";
-                    std::cin >> charInput;
-                    std::cin.clear();
-                    std::cin.ignore(1000,'\n');
-                    std::cout << std::endl;
-                    if(std::cin.fail()){ //check if input is char
-                        std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
-                        std::cout << "Please try again." << std::endl;
-                    }
-                    else if(charInput != 'q' && charInput != 'e'){
-                        std::cout << "Error: character input must be either 'q' or 'e'." << std::endl;
-                        std::cout << "Please try again." << std::endl;
-                    }
-                    else
-                        break;
-                }
-                if(charInput == 'e'){ //if user is satisfied with most recent input
+                if(proceed()){ //if user is satisfied with most recent input
                     if(choices.size() >= 9){
                         std::cout << "Maximum number of choices reached." << std::endl;
                         std::cout << std::endl;
@@ -180,7 +141,7 @@ class MC : public Question{
                     std::cout << "Error: integer input must be greater than 0 and less than 10." << std::endl;
                     std::cout << "Please try again." << std::endl;
                 }
-                else{
+                else if(proceed()){
                     numCorrect = intInput; //numCorrect value set
                     break;
                 }
@@ -198,6 +159,33 @@ class MC : public Question{
                 c++;
             }
             std::cout << std::endl;
+        }
+
+    private:
+        bool proceed(){ //checks if user wants to reinput
+            char charInput = '\0';
+            while(1){
+                    std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
+                    std::cout << ">> ";
+                    std::cin >> charInput;
+                    std::cin.clear();
+                    std::cin.ignore(1000,'\n');
+                    std::cout << std::endl;
+                    if(std::cin.fail()){ //check if input is char
+                        std::cout << "Error: input must be of character type ['a', 'A', 'b', ...]." << std::endl;
+                        std::cout << "Please try again." << std::endl;
+                    }
+                    else if(charInput != 'q' && charInput != 'e'){
+                        std::cout << "Error: character input must be either 'q' or 'e'." << std::endl;
+                        std::cout << "Please try again." << std::endl;
+                    }
+                    else
+                        break;
+            }
+            if(charInput == 'e')
+                return true;
+            else
+                return false;
         }
 };
 

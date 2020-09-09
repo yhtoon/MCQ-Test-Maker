@@ -11,6 +11,8 @@ class Question{
         virtual void setChoices() = 0;
         virtual void setNumCorrect() = 0;
         virtual void display() const = 0;
+    private:
+        virtual bool proceed() = 0;
 };
 
 #endif //__QUESTION_HPP__
