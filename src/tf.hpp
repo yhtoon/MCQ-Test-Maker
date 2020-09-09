@@ -14,7 +14,9 @@ class TF : public Question{
         2. store input into variables
         */
         TF():numCorrect(1){ 
-            std::cout << "TODO: TF::TF()" << std::endl;
+            std::cout << "...Constructing new True/False Question..." << std::endl;
+            setQuestion();
+            setChoices();
         }
 
         std::string getQuestion() const{
@@ -45,31 +47,30 @@ class TF : public Question{
         }
 
         void setChoices(){
-          char charInput = '\0';
-          while(1){
-              charInput = '\0';
-              std::cout << "Enter (t or f):" << std::endl;
-              std::cout << ">> ";   
-              std::cin >> charInput;
-              std::cin.clear();
-              std::cin.ignore(1000,'\n');
-              std::cout << std::endl;
-              charInput = tolower(charInput);
-              if(charInput != 't' && charInput != 'f'){
-                std::cout << "Error: character input must be either 't' or 'f'." << std::endl;
-                std::cout << "Please try again." << std::endl;
-              }
-              else{
-                if (proceed()){
-                  if(charInput=='t'){
-                    choices.push_back("T");
-                  }
-                  else  choices.push_back("F");
-                  break;
+            char charInput = '\0';
+            while(1){
+                charInput = '\0';
+                std::cout << "Enter (t or f):" << std::endl;
+                std::cout << ">> ";   
+                std::cin >> charInput;
+                std::cin.clear();
+                std::cin.ignore(1000,'\n');
+                std::cout << std::endl;
+                charInput = tolower(charInput);
+                if(charInput != 't' && charInput != 'f'){
+                    std::cout << "Error: character input must be either 't' or 'f'." << std::endl;
+                    std::cout << "Please try again." << std::endl;
                 }
-              }  
-          }
- 
+                else{
+                    if (proceed()){
+                        if(charInput=='t'){
+                            choices.push_back("T");
+                        }
+                        else  choices.push_back("F");
+                        break;
+                    }
+                }  
+            }
         }
 
         void setNumCorrect(){
