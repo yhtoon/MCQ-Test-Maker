@@ -29,11 +29,8 @@ class MC : public Question{
         }
 
         void setQuestion(){ //receives and verifies user input for std::string question
-            char charInput = '\0';
             std::string strInput = "";
             while(1){
-                //resets temp input variables
-                charInput = '\0';
                 strInput = "";
                 std::cout << "Enter question:" << std::endl;
                 std::cout << ">> ";
@@ -53,7 +50,6 @@ class MC : public Question{
             int correctChoiceIndex = 1;
             int incorrectChoiceIndex = 1;
             while(1){
-                //resets temp input variables
                 charInput = '\0';
                 strInput = "";
                 if(correctChoiceIndex <= numCorrect){
@@ -165,7 +161,7 @@ class MC : public Question{
         bool proceed(){ //checks if user wants to reinput
             char charInput = '\0';
             while(1){
-                    std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
+                    std::cout << "Enter 'q' to reinput or 'e' to continue" << std::endl;
                     std::cout << ">> ";
                     std::cin >> charInput;
                     std::cin.clear();

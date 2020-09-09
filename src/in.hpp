@@ -58,7 +58,7 @@ class In{
     private:
         char menu(){
             char charInput = '\0';
-            while(1){ //checks if user wants to reinput
+            while(1){
                 std::cout << "...MCQ builder MENU..." << std::endl;
                 std::cout << "a -> add      - build a TF (true/false) or MC (multiple choice) question" << std::endl;
                 std::cout << "s -> edit     - view, select, and edit a question" << std::endl;
@@ -91,7 +91,7 @@ class In{
         bool proceed(){ //checks if user wants to reinput
             char charInput = '\0';
             while(1){
-                    std::cout << "Enter 'q' to reenter question or 'e' to continue" << std::endl;
+                    std::cout << "Enter 'q' to reinput or 'e' to continue" << std::endl;
                     std::cout << ">> ";
                     std::cin >> charInput;
                     std::cin.clear();
